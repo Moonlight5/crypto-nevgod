@@ -37,20 +37,14 @@ export default {
         });
       });
 
-      this.$watch(
-        "currency",
-        (val) => {
-          let key = data.config.params.fsym;
-          if (this.stateCurrencyVal != val[key].P) {
-            this.stateCurrencyVal = val[key].P;
-            chart.addData({
-              date: new Date(val[key].TS * 1000),
-              value: val[key].P,
-            });
-          }
-        },
-        { deep: true }
-      );
+      setInterval(() => {
+        let key = data.config.params.fsym;
+        this.stateCurrencyVal = this.currency[key].P;
+        chart.addData({
+          date: new Date(this.currency[key].TS * 1000),
+          value: this.currency[key].P,
+        });
+      }, 1000);
 
       chart.paddingRight = 50;
       chart.data = localData;
