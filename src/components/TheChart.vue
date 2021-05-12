@@ -39,7 +39,6 @@ export default {
 
       setInterval(() => {
         let key = data.config.params.fsym;
-        this.stateCurrencyVal = this.currency[key].P;
         chart.addData({
           date: new Date(this.currency[key].TS * 1000),
           value: this.currency[key].P,
